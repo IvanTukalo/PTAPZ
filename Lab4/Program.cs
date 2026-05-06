@@ -2,30 +2,29 @@ using Lab4.Data;
 using Lab4.Repositories;
 using Lab4.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Додаємо контролери
-builder.Services.AddControllers();
+// Додаємо контролери та налаштовуємо JSON під Swagger (snake_case)
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+    });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Налаштовуємо базу даних в пам'яті
+// In-Memory БД
 builder.Services.AddDbContext<LibraryDbContext>(opt => opt.UseInMemoryDatabase("LibraryDb"));
 
-// Реєструємо Repositories (Data Layer)
-builder.Services.AddScoped<IBookRepository, BookRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
-// Реєструємо Services (Application Layer)
-builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
+// Реєструємо наші шари
+builder.Services.AddScoped<LibraryRepository>();
+builder.Services.AddScoped<LibraryBusinessLogic>();
 
 var app = builder.Build();
 
-// Налаштовуємо Swagger для зручного тестування
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

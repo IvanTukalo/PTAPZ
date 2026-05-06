@@ -1,14 +1,12 @@
-namespace Lab4.Models
+namespace Lab4.DTOs
 {
-    public class Book 
+    public class BookInputDto 
     {
-        public int Id { get; set; }
         public string Title { get; set; }
-        public List<string> Authors { get; set; } = new(); // Масив авторів
+        public List<string> Authors { get; set; }
         public string Publisher { get; set; }
         public int Year { get; set; }
         public int FreeCopies { get; set; }
-        public int BookedCopies { get; set; }
         public bool IsDigitized { get; set; }
     }
 }

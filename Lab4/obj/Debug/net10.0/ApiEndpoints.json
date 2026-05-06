@@ -1,34 +1,109 @@
 [
   {
-    "ContainingType": "Lab4.Controllers.BooksController",
-    "Method": "GetBooks",
-    "RelativePath": "api/Books",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Lab4.Controllers.BooksController",
-    "Method": "CreateBook",
-    "RelativePath": "api/Books",
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Lab4.DTOs.CreateBookDto",
+        "Type": "Lab4.DTOs.LoginDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Lab4.Controllers.OrdersController",
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "GetBooks",
+    "RelativePath": "api/books",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "author",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "is_digitized",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "AddBook",
+    "RelativePath": "api/books",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Lab4.DTOs.BookInputDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "GetBook",
+    "RelativePath": "api/books/{book_id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "book_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "DeleteBook",
+    "RelativePath": "api/books/{book_id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "book_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "ReadDigitalBook",
+    "RelativePath": "api/books/{book_id}/content",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "book_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Lab4.Controllers.LibraryController",
     "Method": "CreateOrder",
-    "RelativePath": "api/Orders",
+    "RelativePath": "api/orders",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -42,15 +117,15 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Lab4.Controllers.OrdersController",
-    "Method": "ReturnBook",
-    "RelativePath": "api/Orders/{id}/return",
-    "HttpMethod": "PATCH",
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "CancelOrder",
+    "RelativePath": "api/orders/{order_id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "order_id",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -58,16 +133,53 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Lab4.Controllers.UsersController",
-    "Method": "CreateUser",
-    "RelativePath": "api/Users",
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "UpdateOrderStatus",
+    "RelativePath": "api/orders/{order_id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "order_id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Lab4.DTOs.UpdateOrderStatusDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "RegisterUser",
+    "RelativePath": "api/users",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Lab4.DTOs.CreateUserDto",
+        "Type": "Lab4.DTOs.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Lab4.Controllers.LibraryController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/users/{user_id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user_id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
