@@ -22,7 +22,7 @@ namespace Lab4.Controllers
         public async Task<IActionResult> GetBooks([FromQuery] string author, [FromQuery] bool? is_digitized)
         {
             var books = await _repo.GetBooksAsync();
-            if (!string.IsNullOrEmpty(author)) books = books.Where(b => b.Authors.Contains(author)).ToList();
+            if (!string.IsNullOrEmpty(author)) books = books.Where(b => b.Authors.Any(a => a.Contains(author))).ToList();
             if (is_digitized.HasValue) books = books.Where(b => b.IsDigitized == is_digitized.Value).ToList();
             return Ok(books);
         }
